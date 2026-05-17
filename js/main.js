@@ -287,3 +287,21 @@ function submitForm() {
 document.addEventListener('keydown', e => {
   if(e.key === 'Escape') { closeModal(); closePolicies(); }
 });
+
+/* ═══════════════════ PROTECCIÓN DEL CÓDIGO Y CONTENIDO ═══════════════════ */
+// Deshabilitar el clic derecho (menú contextual)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Deshabilitar atajos de teclado para herramientas de desarrollo y copiar (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+C)
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+    (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'c' || e.key === 'C' || e.key === 's' || e.key === 'S'))
+  ) {
+    e.preventDefault();
+  }
+});
+
+// Deshabilitar arrastre de imágenes y enlaces
+document.addEventListener('dragstart', e => e.preventDefault());

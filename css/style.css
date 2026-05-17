@@ -32,7 +32,26 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Source Sans 3', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.7; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.7;
+      /* Prevenir selección de texto globalmente */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Permitir selección dentro de inputs y textareas para que el formulario funcione */
+    input, textarea {
+      -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
 
     /* ═══════════════════ HEADER ═══════════════════ */
     header {
