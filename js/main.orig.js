@@ -226,18 +226,16 @@ function closePolicies() {
 }
 function closePoliciesIf(e) { if(e.target === document.getElementById('policies-modal')) closePolicies(); }
 
-/* ═══════════════════ ENVÍO DE FORMULARIO ═══════════════════ */
+/* ═══════════════════ FORM SUBMIT ═══════════════════ */
 function submitForm() {
   const nombre = document.getElementById('f-nombre').value.trim();
-  const tel = document.getElementById('f-tel').value;
   const email = document.getElementById('f-email').value.trim();
-  const pais = document.getElementById('f-pais').value;
   const area = document.getElementById('f-area').value;
   const caso = document.getElementById('f-caso').value.trim();
   const privacidad = document.getElementById('privacidad').checked;
   const lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
 
-  if(!nombre || !email || !area || !caso || !tel) {
+  if(!nombre || !email || !area || !caso) {
     alert(lang === 'es' ? 'Por favor complete todos los campos obligatorios (*)' : 'Please fill in all required fields (*)');
     return;
   }
@@ -246,41 +244,18 @@ function submitForm() {
     return;
   }
 
-  // Cambiar el texto del botón mientras se envía
-  const submitBtn = document.querySelector('.btn-submit');
-  const originalBtnContent = submitBtn.innerHTML;
-  submitBtn.innerHTML = lang === 'es' ? 'Enviando...' : 'Sending...';
-  submitBtn.disabled = true;
+  // Build mailto link
+  const tel = document.getElementById('f-tel').value;
+  const pais = document.getElementById('f-pais').value;
+  const subject = encodeURIComponent(`Consulta Jurídica — ${area} — ${nombre}`);
+  const body = encodeURIComponent(`NUEVA CONSULTA JURÍDICA\n\nNombre: ${nombre}\nTeléfono: ${tel}\nEmail: ${email}\nPaís: ${pais}\nÁrea: ${area}\n\nDescripción del caso:\n${caso}\n\n---\nEnviado desde www.aurydiaz.com`);
 
-  // Enviar los datos mediante AJAX usando FormSubmit
-  fetch('https://formsubmit.co/ajax/auryfernandiaz@gmail.com', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-        Nombre: nombre,
-        Teléfono: tel,
-        Email: email,
-        País: pais,
-        Área: area,
-        Caso: caso,
-        _subject: `Consulta Jurídica — ${area} — ${nombre}`
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Mostrar mensaje de éxito
-    document.getElementById('form-content').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  })
-  .catch(error => {
-    console.error('Error al enviar el formulario:', error);
-    alert(lang === 'es' ? 'Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.' : 'There was an error sending the form. Please try again later.');
-    submitBtn.innerHTML = originalBtnContent;
-    submitBtn.disabled = false;
-  });
+  // Open mailto
+  window.location.href = `mailto:auryfernandiaz@gmail.com?cc=fernan@aurydiaz.com&subject=${subject}&body=${body}`;
+
+  // Show success
+  document.getElementById('form-content').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
 }
 
 /* ═══════════════════ KEYBOARD ESC ═══════════════════ */
