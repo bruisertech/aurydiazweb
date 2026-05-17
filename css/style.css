@@ -23,8 +23,12 @@
     }
 
     /* i18n hidden/visible */
-    [data-lang] { display: none; }
-    .lang-es [data-lang="es"], .lang-en [data-lang="en"] { display: revert; }
+    html.lang-es [data-lang="en"],
+    html.lang-en [data-lang="es"],
+    body.lang-es [data-lang="en"],
+    body.lang-en [data-lang="es"] {
+      display: none !important;
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
