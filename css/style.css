@@ -492,7 +492,7 @@
     .footer-col ul li a:hover { color: var(--gold); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .footer-bottom p { font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.3); }
-    .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-legal { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
     .footer-legal a { font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: var(--transition); cursor: pointer; }
     .footer-legal a:hover { color: var(--gold); }
 
