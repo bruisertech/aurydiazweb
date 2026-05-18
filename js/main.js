@@ -305,3 +305,78 @@ document.addEventListener('keydown', e => {
 
 // Deshabilitar arrastre de imágenes y enlaces
 document.addEventListener('dragstart', e => e.preventDefault());
+
+// Efecto Matrix Anti-DevTools
+(function detectDevTools() {
+  let devtoolsOpen = false;
+
+  function executeMatrix() {
+    if (devtoolsOpen) return;
+    devtoolsOpen = true;
+
+    // Destruir el contenido real
+    document.body.innerHTML = '';
+    document.head.innerHTML = '';
+    document.documentElement.style.backgroundColor = '#000';
+    document.body.style.backgroundColor = '#000';
+    document.body.style.margin = '0';
+    document.body.style.overflow = 'hidden';
+
+    // Crear el canvas
+    const canvas = document.createElement('canvas');
+    canvas.style.display = 'block';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+
+    // Ajustar tamaño del canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = '01';
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0F0';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+  }
+
+  // Detectar abriendo DevTools a través de la diferencia de tiempo que genera "debugger"
+  setInterval(() => {
+    const start = performance.now();
+    debugger;
+    if (performance.now() - start > 100) {
+      executeMatrix();
+    }
+  }, 1000);
+
+  // Respaldo de detección de tamaño de ventana vs pantalla
+  window.addEventListener('resize', () => {
+    const threshold = 160;
+    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+      executeMatrix();
+    }
+  });
+})();
