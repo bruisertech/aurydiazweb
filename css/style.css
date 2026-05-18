@@ -371,8 +371,8 @@
     .sol-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: var(--transition); }
     .sol-card:hover::after { transform: scaleX(1); }
     .sol-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-4px); }
-    .sol-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; }
-    .sol-title { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .sol-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; text-align: center; }
+    .sol-title { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-align: center; }
     .sol-desc { font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem; color: var(--mid-gray); line-height: 1.75; }
 
     /* ═══════════════════ SERVICIOS ESTRATÉGICOS ═══════════════════ */
