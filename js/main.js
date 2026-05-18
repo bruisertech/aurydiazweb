@@ -253,7 +253,7 @@ function submitForm() {
   submitBtn.disabled = true;
 
   // Enviar los datos mediante AJAX usando FormSubmit
-  fetch('https://formsubmit.co/ajax/auryfernandiaz@gmail.com', {
+  fetch('https://formsubmit.co/ajax/daniel.c67h@gmail.com', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -372,11 +372,4 @@ document.addEventListener('dragstart', e => e.preventDefault());
     }
   }, 1000);
 
-  // Respaldo de detección de tamaño de ventana vs pantalla
-  window.addEventListener('resize', () => {
-    const threshold = 160;
-    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
-      executeMatrix();
-    }
-  });
 })();
