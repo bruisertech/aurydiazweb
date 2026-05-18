@@ -246,37 +246,51 @@ function submitForm() {
     return;
   }
 
-  // ENVÍO TRADICIONAL PARA ACTIVAR CORREO EN FORMSUBMIT
+  // Cambiar el texto del botón mientras se envía
+  const submitBtn = document.querySelector('.btn-submit');
+  const originalBtnContent = submitBtn.innerHTML;
+  submitBtn.innerHTML = lang === 'es' ? 'Enviando...' : 'Sending...';
+  submitBtn.disabled = true;
 
-  // Crear un formulario en memoria
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://formsubmit.co/daniel.c67h@gmail.com'; // Sin /ajax/ para forzar envío normal y activación
-
-  // Crear inputs ocultos para cada dato
-  const data = {
-      Nombre: nombre,
-      Teléfono: tel,
-      Email: email,
-      País: pais,
-      Área: area,
-      Caso: caso,
-      _subject: `Consulta Jurídica — ${area} — ${nombre}`
-  };
-
-  for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-          const hiddenField = document.createElement('input');
-          hiddenField.type = 'hidden';
-          hiddenField.name = key;
-          hiddenField.value = data[key];
-          form.appendChild(hiddenField);
-      }
-  }
-
-  // Añadir formulario al documento y enviarlo
-  document.body.appendChild(form);
-  form.submit();
+  // Enviar los datos mediante AJAX usando Web3Forms
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+        access_key: '485428c1-8039-4ade-8980-2e25b7cfabe9',
+        Nombre: nombre,
+        Teléfono: tel,
+        Email: email,
+        País: pais,
+        Área: area,
+        Caso: caso,
+        subject: `Consulta Jurídica — ${area} — ${nombre}`,
+        from_name: nombre,
+        replyto: email
+    })
+  })
+  .then(async (response) => {
+    let json = await response.json();
+    if (response.status == 200) {
+      // Mostrar mensaje de éxito
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      console.error(json);
+      alert(lang === 'es' ? 'Hubo un error al enviar el formulario: ' + json.message : 'There was an error sending the form: ' + json.message);
+      submitBtn.innerHTML = originalBtnContent;
+      submitBtn.disabled = false;
+    }
+  })
+  .catch(error => {
+    console.error('Error al enviar el formulario:', error);
+    alert(lang === 'es' ? 'Hubo un error de red al enviar el formulario. Por favor, inténtelo de nuevo más tarde.' : 'There was a network error sending the form. Please try again later.');
+    submitBtn.innerHTML = originalBtnContent;
+    submitBtn.disabled = false;
+  });
 }
 
 /* ═══════════════════ KEYBOARD ESC ═══════════════════ */
