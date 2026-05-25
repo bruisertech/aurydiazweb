@@ -399,7 +399,8 @@
     .hd-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
     .hd-step { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.12); border-radius: 8px; padding: 16px; text-align: center; }
     .hd-step-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); display: block; }
-    .hd-step-text { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; display: block; }
+    .hd-step-text { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; display: block; margin-bottom: 6px; }
+    .hd-step-desc { font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.4; display: block; }
 
     /* INTERNATIONAL STEPS */
     .int-process { margin-top: 24px; }
