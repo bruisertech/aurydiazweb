@@ -577,3 +577,20 @@
     /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Habeas Data Step Descriptions */
+.hd-step .step-description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .hd-step .step-description {
+    font-size: 0.8rem;
+  }
+}
