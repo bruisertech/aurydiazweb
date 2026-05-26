@@ -367,6 +367,7 @@
     .sol-card {
       border: 1px solid var(--light-gray); border-radius: 10px; padding: 36px 30px;
       transition: var(--transition); position: relative; overflow: hidden;
+      height: auto;
     }
     .sol-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: var(--transition); }
     .sol-card:hover::after { transform: scaleX(1); }
@@ -397,7 +398,7 @@
 
     /* HABEAS DATA STEPS */
     .hd-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
-    .hd-step { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.12); border-radius: 8px; padding: 16px; text-align: center; }
+    .hd-step { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.12); border-radius: 8px; padding: 16px 16px 24px 16px; text-align: center; height: auto; }
     .hd-step-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); display: block; }
     .hd-step-text { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; display: block; }
 
@@ -566,7 +567,8 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .modal-box { padding: 32px 24px; }
       .modal-list { grid-template-columns: 1fr; }
-      .hd-steps { grid-template-columns: repeat(2, 1fr); }
+      .hd-steps { grid-template-columns: 1fr; }
+      .sol-card { padding: 32px 24px 40px 24px; }
       .credentials-grid { grid-template-columns: 1fr; }
       .jerarquia-section .container { grid-template-columns: 1fr !important; }
     }
