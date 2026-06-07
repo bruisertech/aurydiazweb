@@ -169,6 +169,7 @@
       position: absolute; inset: 0; opacity: 0.025;
       background-image: linear-gradient(rgba(201,169,97,1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,169,97,1) 1px, transparent 1px);
       background-size: 70px 70px;
+      animation: slideDownGrid 20s linear infinite;
     }
     .hero-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; width: 100%; position: relative; z-index: 2; padding-top: 76px; display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; min-height: 100vh; }
     .hero-content { }
@@ -693,4 +694,16 @@
   .mobile-bottom-bar {
     display: block;
   }
+}
+
+/* Animación de fondo bajando para hero-grid */
+@keyframes slideDownGrid {
+  0% { transform: translateY(-70px); }
+  100% { transform: translateY(0); }
+}
+
+/* Corrección de la Animación de fondo bajando para hero-grid */
+@keyframes slideDownGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 70px; }
 }
