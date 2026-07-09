@@ -688,3 +688,235 @@
   0% { transform: translateY(0); }
   100% { transform: translateY(70px); }
 }
+
+/* =========================================================================
+   Redesign Additions (Grayscale, Hero Text, Flat Nav, Themed Dropdowns)
+   ========================================================================= */
+
+/* Ensure main and sinester images are grayscale to match reference */
+#hero-img, .sinester-img {
+  filter: grayscale(100%);
+}
+
+
+
+/* Ensure the navbar appears as a clean top flat bar and dropdowns are themed dark */
+.navbar {
+  background: var(--bg-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.nav-links > li > a {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* Re-theme nested sub-menus (mega-menu and dropdowns) instead of deleting them */
+.mega-menu, .dropdown {
+  background: var(--secondary) !important;
+  color: var(--text-color) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mega-menu h4 {
+  color: var(--accent) !important;
+}
+.mega-menu a, .dropdown a {
+  color: var(--text-color) !important;
+}
+.mega-menu a:hover, .dropdown a:hover {
+  background: rgba(212, 175, 55, 0.1) !important;
+  color: var(--accent) !important;
+}
+
+/* Override Hero Layout to match ejemplo.webp */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%) !important;
+  padding-top: 100px; /* space for navbar */
+}
+.hero-grid { display: none; } /* Remove background animation */
+
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  padding-right: 50px;
+  z-index: 20;
+}
+
+.hero-photo-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  z-index: 10;
+}
+.hero-photo-inner {
+  border: none;
+  background: transparent;
+}
+#hero-img {
+  width: 100%;
+  max-width: 600px;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.hero-photo-tag, .hero-stats {
+  /* keep visible but restyle to be subtle or match the image vibe */
+  background: rgba(10, 10, 10, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-color) !important;
+}
+
+/* Move huge text to background of hero container */
+.hero::before {
+  content: 'AURY DIAZ';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20vw;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  z-index: 1; /* Behind content, over background */
+}
+
+/* =========================================================================
+   HOLISTIC REDESIGN (Matching example.webp layout vibe)
+   ========================================================================= */
+
+/* Use serif for major headings */
+h1, h2, h3, .hero::before {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: normal;
+}
+
+/* Make practice area cards look like the example's 4-grid */
+.area-card {
+  background: var(--secondary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 8px !important;
+  padding: 30px !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+.area-icon {
+  background: transparent !important;
+  color: var(--accent) !important;
+  text-align: left;
+  display: block;
+  margin-bottom: 20px;
+}
+.area-icon svg {
+  fill: var(--accent) !important;
+  width: 32px;
+  height: 32px;
+}
+.area-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.area-card p {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+}
+
+/* Section Headings */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+}
+.section-title::after {
+  display: none; /* Remove golden underlines if they exist, keep it clean */
+}
+
+/* The Firm / Director section */
+.director-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .director-container { grid-template-columns: 1fr; }
+}
+
+/* Ensure secondary images also match the vibe */
+.director-img {
+  filter: grayscale(100%);
+  border-radius: 0; /* Remove rounded corners if any */
+  border: none !important;
+}
+
+/* Resources / Blog Cards */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.resource-card {
+  background: transparent !important;
+  border: none !important;
+  text-align: left !important;
+}
+.resource-card img {
+  border-radius: 8px;
+  filter: grayscale(100%);
+}
+.resource-content {
+  padding: 20px 0 !important;
+}
+
+/* FAQ / Accordion styling */
+.accordion-item {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0 !important;
+}
+.accordion-btn {
+  background: transparent !important;
+  padding: 20px 0 !important;
+  font-family: inherit !important;
+}
+
+/* Contact Section */
+.contact-container {
+  background: var(--secondary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 8px !important;
+  padding: 50px !important;
+}
+.form-group input, .form-group textarea {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0 !important;
+}
+.btn-primary {
+  background: var(--accent) !important;
+  color: #000 !important;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
